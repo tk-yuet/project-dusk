@@ -1,0 +1,12 @@
+[submodule "dusk"]
+	path = dusk
+	url = git@github.com:tk-yuet/dusk.git
+[submodule "dusk-gui"]
+	path = dusk-gui
+	url = git@github.com:tk-yuet/dusk-gui.git
+[submodule "dusk-backend"]
+	path = dusk-backend
+	url = git@github.com:tk-yuet/dusk-backend.git
+[submodule "dusk-website"]
+	path = dusk-website
+	url = git@github.com:tk-yuet/dusk-website.git
