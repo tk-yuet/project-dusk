@@ -1,5 +1,5 @@
-import face_recognition
 
+import face_recognition
 import pika
 
 credentials = pika.PlainCredentials('dusk', 'dusk')
@@ -20,10 +20,11 @@ channel = connection.channel()
 
 print(' [*] Waiting for logs. To exit press CTRL+C')
 
-def callback(ch, method, properties, body):
+
+def handleReceivedMsg(ch, method, properties, body):
     print(" [x] %r" % body)
 
-channel.basic_consume(
-    queue="to-dusk-python", on_message_callback=callback, auto_ack=True)
 
+channel.basic_consume(
+    queue="to-dusk-python", on_message_callback=handleReceivedMsg, auto_ack=True)
 channel.start_consuming()
