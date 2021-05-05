@@ -1,6 +1,7 @@
 
 import face_recognition
 import pika
+import json
 
 credentials = pika.PlainCredentials('dusk', 'dusk')
 parameters = pika.ConnectionParameters(host='localhost',
@@ -20,9 +21,14 @@ channel = connection.channel()
 
 print(' [*] Waiting for logs. To exit press CTRL+C')
 
-
 def handleReceivedMsg(ch, method, properties, body):
-    print(" [x] %r" % body)
+    try:
+        json_body = json.loads(body)
+    except ValueError:  # includes simplejson.decoder.JSONDecodeError
+        print('Decoding JSON has failed')
+    #  Published: {"action": "a"}
+    print(" [json_body] %r" % json_body)
+    print(" [action] %r" % json_body["action"])
 
 
 channel.basic_consume(
